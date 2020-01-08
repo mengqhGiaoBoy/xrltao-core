@@ -1,12 +1,15 @@
 package com.xrltao.controller;
 
 import ch.qos.logback.core.joran.spi.ElementSelector;
+import com.github.pagehelper.PageHelper;
+import com.xrltao.config.MybatisConfig;
 import com.xrltao.config.WeChatConfig;
 import com.xrltao.config.XrltaoType;
 import com.xrltao.domain.ResultDTO;
 import com.xrltao.mapper.VideoMapper;
 import com.xrltao.po.Video;
 import com.xrltao.service.interfaces.VideoService;
+import com.xrltao.util.HttpCilentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -28,7 +32,8 @@ public class VideoController {
 
     @Autowired
     private VideoService videoService;
-
+//    @Autowired
+//    private PageHelper pageHelper;
     /*
      * @author mengqh
      * @date 2020/1/5 13:10
@@ -41,8 +46,8 @@ public class VideoController {
                                @RequestParam(value = "size",defaultValue = "10") int size
                                ){
         ResultDTO result = new ResultDTO();
+        PageHelper.startPage(0,5);
         List<Video> videos = videoService.selectAll();
-
         result.setStatus(XrltaoType.RESULT_STATUS_SUCCEED);
         result.setContent(videos);
         return result;
@@ -66,6 +71,5 @@ public class VideoController {
         }
         return result;
     }
-
 
 }
