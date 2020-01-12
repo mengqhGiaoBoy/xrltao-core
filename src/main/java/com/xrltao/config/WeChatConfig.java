@@ -50,8 +50,61 @@ public class WeChatConfig {
      */
     private final static String OPEN_QRCODE_URL= "https://open.weixin.qq.com/connect/qrconnect?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_login&state=%s#wechat_redirect";
 
+    /**
+     * 商户号id
+     */
+    @Value("${wxpay.mer_id}")
+    private String mchId;
+
+
+    /**
+     * 支付key
+     */
+    @Value("${wxpay.key}")
+    private String key;
+
+    /**
+     * 微信支付回调url
+     */
+    @Value("${wxpay.callback}")
+    private String payCallbackUrl;
+
+
+    /**
+     * 统一下单url
+     */
+    private static final String UNIFIED_ORDER_URL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+
     public static String getOpenQrcodeUrl() {
         return OPEN_QRCODE_URL;
+    }
+
+    public String getMchId() {
+        return mchId;
+    }
+
+    public void setMchId(String mchId) {
+        this.mchId = mchId;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getPayCallbackUrl() {
+        return payCallbackUrl;
+    }
+
+    public void setPayCallbackUrl(String payCallbackUrl) {
+        this.payCallbackUrl = payCallbackUrl;
+    }
+
+    public static String getUnifiedOrderUrl() {
+        return UNIFIED_ORDER_URL;
     }
 
     public String getOpenAppid() {

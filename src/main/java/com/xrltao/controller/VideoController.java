@@ -9,7 +9,6 @@ import com.xrltao.domain.ResultDTO;
 import com.xrltao.mapper.VideoMapper;
 import com.xrltao.po.Video;
 import com.xrltao.service.interfaces.VideoService;
-import com.xrltao.util.HttpCilentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
