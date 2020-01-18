@@ -27,7 +27,10 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 public class UserController {
-
+    @RequestMapping("test")
+    public void test(){
+        throw new RuntimeException();
+    }
 //    @Autowired
 //    private DefaultMQProducer defaultMQProducer;
 //    @Autowired

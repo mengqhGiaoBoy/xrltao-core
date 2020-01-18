@@ -2,6 +2,7 @@ package com.xrltao.util;
 
 import com.google.gson.Gson;
 import com.xrltao.config.XrltaoType;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -74,11 +75,12 @@ public class HttpClientUtil {
         // 设置自定义配置
         RequestConfig config = RequestConfig.custom().setConnectTimeout(5000) // 设置连接超时
                 .setConnectionRequestTimeout(6000) // 设置请求超时
+                .setSocketTimeout(6000)
                 .setRedirectsEnabled(true).build();// 允许重定向
 
         HttpPost httpPost = new HttpPost(url);
         // 设置消息头
-        httpPost.addHeader("Content-Type", "text/html;UTF-8");
+        httpPost.addHeader("Content-Type","text/html; chartset=UTF-8");
         httpPost.setConfig(config);
         if (data != null && data instanceof String){
             // 设置消息体
@@ -93,6 +95,7 @@ public class HttpClientUtil {
                 String strEntity = EntityUtils.toString(httpResponse.getEntity());
                 return strEntity;
             }
+            System.out.println(httpResponse.getStatusLine().getStatusCode());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
